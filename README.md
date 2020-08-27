@@ -485,6 +485,9 @@ _Cluster with index on all maps named like: `GROUPED_DATA_VALUE.*`_
 ![cluster-with-index.png](./assets/images/cluster-with-index.png)
 
 
+**JVM**
+
+![jvm-stat-indexed.png](./assets/images/jvm-stat-indexed.png)
 
 
 ### Pick data using predicate
@@ -571,6 +574,9 @@ _Cluster with maps named like: `GROUPED_DATA_VALUE.*`_
 ![cluster-without-index.png](./assets/images/cluster-without-index.png)
 
 
+**JVM**
+
+![jvm-stat-no-indexed.png](./assets/images/jvm-stat-no-indexed.png)
 
 
 ### Pick data using predicate
