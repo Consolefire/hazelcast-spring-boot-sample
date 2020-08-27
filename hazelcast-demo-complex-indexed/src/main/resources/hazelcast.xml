@@ -1,0 +1,192 @@
+<hazelcast xmlns="http://www.hazelcast.com/schema/config"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.hazelcast.com/schema/config http://www.hazelcast.com/schema/config/hazelcast-config-4.0.xsd">
+	<cluster-name>cluster-cf-hazelcast-demo-complex-indexed</cluster-name>
+	<management-center scripting-enabled="false" />
+	<security enabled="false">
+		<client-block-unmapped-actions>true</client-block-unmapped-actions>
+	</security>
+	<network>
+		<port port-count="100" auto-increment="true">16701</port>
+		<reuse-address>true</reuse-address>
+		<join>
+			<multicast enabled="false" loopbackModeEnabled="false">
+				<multicast-group>224.2.2.3</multicast-group>
+				<multicast-port>54327</multicast-port>
+				<multicast-timeout-seconds>2</multicast-timeout-seconds>
+				<multicast-time-to-live>32</multicast-time-to-live>
+			</multicast>
+			<tcp-ip enabled="false" connection-timeout-seconds="5">
+				<member-list />
+			</tcp-ip>
+			<aws enabled="false" />
+			<gcp enabled="false" />
+			<azure enabled="false" />
+			<kubernetes enabled="false" />
+			<eureka enabled="false">
+			</eureka>
+			<discovery-strategies />
+		</join>
+		<interfaces enabled="false" />
+		<ssl enabled="false" />
+		<socket-interceptor enabled="false" />
+		<rest-api enabled="false">
+			<endpoint-group name="CLUSTER_READ" enabled="true" />
+			<endpoint-group name="CLUSTER_WRITE" enabled="false" />
+			<endpoint-group name="HEALTH_CHECK" enabled="true" />
+			<endpoint-group name="HOT_RESTART" enabled="false" />
+			<endpoint-group name="WAN" enabled="false" />
+			<endpoint-group name="DATA" enabled="false" />
+			<endpoint-group name="CP" enabled="false" />
+		</rest-api>
+		<memcache-protocol enabled="false" />
+	</network>
+	<map name="default">
+		<in-memory-format>BINARY</in-memory-format>
+		<statistics-enabled>true</statistics-enabled>
+		<cache-deserialized-values>INDEX-ONLY</cache-deserialized-values>
+		<backup-count>0</backup-count>
+		<async-backup-count>1</async-backup-count>
+		<time-to-live-seconds>0</time-to-live-seconds>
+		<max-idle-seconds>0</max-idle-seconds>
+		<merge-policy batch-size="100">com.hazelcast.spi.merge.PutIfAbsentMergePolicy</merge-policy>
+		<read-backup-data>false</read-backup-data>
+		<metadata-policy>CREATE_ON_UPDATE</metadata-policy>
+		<eviction size="2147483647" max-size-policy="PER_NODE"
+			eviction-policy="NONE" />
+		<merkle-tree enabled="false">
+			<depth>10</depth>
+		</merkle-tree>
+		<event-journal enabled="false">
+			<capacity>10000</capacity>
+			<time-to-live-seconds>0</time-to-live-seconds>
+		</event-journal>
+		<hot-restart enabled="false">
+			<fsync>false</fsync>
+		</hot-restart>
+		<map-store enabled="false" initial-mode="LAZY">
+			<write-delay-seconds>0</write-delay-seconds>
+			<write-batch-size>1</write-batch-size>
+		</map-store>
+	</map>
+	<map name="COMPLEX_GROUPED_DATA_VALUE.*">
+		<in-memory-format>BINARY</in-memory-format>
+		<statistics-enabled>true</statistics-enabled>
+		<cache-deserialized-values>INDEX-ONLY</cache-deserialized-values>
+		<backup-count>0</backup-count>
+		<async-backup-count>2</async-backup-count>
+		<time-to-live-seconds>0</time-to-live-seconds>
+		<max-idle-seconds>0</max-idle-seconds>
+		<merge-policy batch-size="100">com.hazelcast.spi.merge.PutIfAbsentMergePolicy</merge-policy>
+		<read-backup-data>true</read-backup-data>
+		<metadata-policy>CREATE_ON_UPDATE</metadata-policy>
+		<eviction size="2147483647" max-size-policy="PER_NODE"
+			eviction-policy="NONE" />
+		<merkle-tree enabled="false">
+			<depth>10</depth>
+		</merkle-tree>
+		<event-journal enabled="false">
+			<capacity>10000</capacity>
+			<time-to-live-seconds>0</time-to-live-seconds>
+		</event-journal>
+		<hot-restart enabled="false">
+			<fsync>false</fsync>
+		</hot-restart>
+		<map-store enabled="false" initial-mode="LAZY">
+			<write-delay-seconds>0</write-delay-seconds>
+			<write-batch-size>1</write-batch-size>
+		</map-store>
+		<indexes>
+			<index type="HASH">
+				<attributes>
+					<attribute>__key</attribute>
+				</attributes>
+			</index>
+			<index type="SORTED">
+				<attributes>
+					<attribute>this</attribute>
+				</attributes>
+			</index>
+		</indexes>
+	</map>
+	
+	<executor-service name="default">
+		<statistics-enabled>true</statistics-enabled>
+		<pool-size>16</pool-size>
+		<queue-capacity>2147483647</queue-capacity>
+	</executor-service>
+	<executor-service name="hz:query">
+		<statistics-enabled>true</statistics-enabled>
+		<pool-size>100</pool-size>
+		<queue-capacity>2147483647</queue-capacity>
+	</executor-service>
+	<partition-group enabled="false"
+		group-type="PER_MEMBER" />
+	<serialization>
+		<portable-version>0</portable-version>
+		<use-native-byte-order>false</use-native-byte-order>
+		<byte-order>BIG_ENDIAN</byte-order>
+		<enable-compression>false</enable-compression>
+		<enable-shared-object>true</enable-shared-object>
+		<allow-unsafe>false</allow-unsafe>
+		<check-class-def-errors>true</check-class-def-errors>
+	</serialization>
+	<lite-member enabled="false" />
+	<native-memory enabled="false" allocator-type="POOLED">
+		<size unit="MEGABYTES" value="512" />
+		<min-block-size>16</min-block-size>
+		<page-size>4194304</page-size>
+		<metadata-space-percentage>12.5</metadata-space-percentage>
+	</native-memory>
+	<hot-restart-persistence enabled="false">
+		<base-dir>/home/sdas/work/hcast-demo/hot-restart</base-dir>
+		<parallelism>1</parallelism>
+		<validation-timeout-seconds>120</validation-timeout-seconds>
+		<data-load-timeout-seconds>900</data-load-timeout-seconds>
+		<cluster-data-recovery-policy>FULL_RECOVERY_ONLY</cluster-data-recovery-policy>
+		<auto-remove-stale-data>true</auto-remove-stale-data>
+		<encryption-at-rest enabled="false">
+			<key-size>0</key-size>
+			<algorithm>AES/CBC/PKCS5Padding</algorithm>
+			<salt>****</salt>
+			<secure-store />
+		</encryption-at-rest>
+	</hot-restart-persistence>
+	<crdt-replication>
+		<replication-period-millis>1000</replication-period-millis>
+		<max-concurrent-replication-targets>1</max-concurrent-replication-targets>
+	</crdt-replication>
+	<cp-subsystem>
+		<cp-member-count>0</cp-member-count>
+		<group-size>0</group-size>
+		<session-time-to-live-seconds>300</session-time-to-live-seconds>
+		<session-heartbeat-interval-seconds>5</session-heartbeat-interval-seconds>
+		<missing-cp-member-auto-removal-seconds>14400</missing-cp-member-auto-removal-seconds>
+		<fail-on-indeterminate-operation-state>false</fail-on-indeterminate-operation-state>
+		<persistence-enabled>false</persistence-enabled>
+		<base-dir>/home/sdas/repo/smava/dialer/casi-dialer-lead-store/cp-data</base-dir>
+		<data-load-timeout-seconds>120</data-load-timeout-seconds>
+		<raft-algorithm>
+			<leader-election-timeout-in-millis>2000</leader-election-timeout-in-millis>
+			<leader-heartbeat-period-in-millis>5000</leader-heartbeat-period-in-millis>
+			<max-missed-leader-heartbeat-count>5</max-missed-leader-heartbeat-count>
+			<append-request-max-entry-count>100</append-request-max-entry-count>
+			<commit-index-advance-count-to-snapshot>10000</commit-index-advance-count-to-snapshot>
+			<uncommitted-entry-count-to-reject-new-appends>100</uncommitted-entry-count-to-reject-new-appends>
+			<append-request-backoff-timeout-in-millis>100</append-request-backoff-timeout-in-millis>
+		</raft-algorithm>
+		<semaphores />
+		<locks />
+	</cp-subsystem>
+	<metrics enabled="true">
+		<management-center enabled="true">
+			<retention-seconds>5</retention-seconds>
+		</management-center>
+		<jmx enabled="true" />
+		<collection-frequency-seconds>5</collection-frequency-seconds>
+	</metrics>
+	<user-code-deployment enabled="false">
+		<class-cache-mode>ETERNAL</class-cache-mode>
+		<provider-mode>LOCAL_AND_CACHED_CLASSES</provider-mode>
+	</user-code-deployment>
+</hazelcast>
