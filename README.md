@@ -482,7 +482,7 @@ _Cluster with index on all maps named like: `GROUPED_DATA_VALUE.*`_
 
 **Data count and Size**
 
-![cluster-with-index.png](./assets/cluster-with-index.png)
+![cluster-with-index.png](./assets/images/cluster-with-index.png)
 
 
 
@@ -515,7 +515,7 @@ Payload:
 
 **Response Time: _1.36 minutes_**
 
-![pick-indexed-predicate.png](./assets/pick-indexed-predicate.png)
+![pick-indexed-predicate.png](./assets/images/pick-indexed-predicate.png)
 
 
 
@@ -551,7 +551,7 @@ Payload:
 
 **Response Time: _819 milliseconds_**
 
-![pick-indexed-iterate.png](./assets/pick-indexed-iterate.png)
+![pick-indexed-iterate.png](./assets/images/pick-indexed-iterate.png)
 
 
 ## Server **without** Indexed Maps
@@ -568,7 +568,7 @@ _Cluster with maps named like: `GROUPED_DATA_VALUE.*`_
 
 **Data count and Size**
 
-![cluster-without-index.png](./assets/cluster-without-index.png)
+![cluster-without-index.png](./assets/images/cluster-without-index.png)
 
 
 
@@ -601,7 +601,7 @@ Payload:
 
 **Response Time: _1.36 minutes_**
 
-![no-index-pick-predicate.png](./assets/no-index-pick-predicate.png)
+![no-index-pick-predicate.png](./assets/images/no-index-pick-predicate.png)
 
 
 
@@ -637,7 +637,7 @@ Payload:
 
 **Response Time: _644 milliseconds_**
 
-![pick-no-index-iterate.png](./assets/pick-no-index-iterate.png)
+![pick-no-index-iterate.png](./assets/images/pick-no-index-iterate.png)
 
 
 
